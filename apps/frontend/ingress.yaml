@@ -1,16 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: chat-frontend
+  name: frontend-ingress
+  namespace: frontend
 spec:
+  ingressClassName: nginx
   rules:
-    - host: chat.local
+    - host: app.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: chat-frontend
+                name: frontend
                 port:
                   number: 80
