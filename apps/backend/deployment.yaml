@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          # TEMP IMAGE (we will replace this with YOUR image later)
+          image: hashicorp/http-echo
+          args:
+            - "-text=Backend API running"
+          ports:
+            - containerPort: 5678
