@@ -14,9 +14,11 @@ spec:
         app: backend
     spec:
       containers:
-      - name: backend
-        image: node:18-alpine
-        command: ["node"]
-        args: ["-e", "require('http').createServer((req,res)=>{res.end('Backend running');}).listen(3000)"]
-        ports:
-        - containerPort: 3000
+        - name: backend
+          image: shivasaiprasad/chat-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: NODE_ENV
+              value: "production"
