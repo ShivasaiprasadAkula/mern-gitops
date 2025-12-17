@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: frontend
+  name: chat-frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: chat-frontend
   template:
     metadata:
       labels:
-        app: frontend
+        app: chat-frontend
     spec:
       containers:
         - name: frontend
-          image: nginx:alpine
+          image: shivasaiprasad/chat-frontend:1.0.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
