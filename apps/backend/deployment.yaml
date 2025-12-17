@@ -14,10 +14,9 @@ spec:
         app: backend
     spec:
       containers:
-        - name: backend
-          # TEMP IMAGE (we will replace this with YOUR image later)
-          image: hashicorp/http-echo
-          args:
-            - "-text=Backend API running"
-          ports:
-            - containerPort: 5678
+      - name: backend
+        image: node:18-alpine
+        command: ["node"]
+        args: ["-e", "require('http').createServer((req,res)=>{res.end('Backend running');}).listen(3000)"]
+        ports:
+        - containerPort: 3000
